@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - Zlleea Visuals</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header & Navigasi Kapsul -->
+    <header>
+        <div class="container navbar-container">
+            <h1><a href="index.html" class="logo">Zlleea Visuals ✨</a></h1>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item">🏠 Home</a>
+                <a href="layanan.html" class="nav-item">🎨 Layanan</a>
+                <a href="kontak.html" class="nav-item">💬 Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Form Kontak & Pemesanan -->
+    <section class="container contact-page">
+        <div class="contact-card">
+            <h2 class="section-title">Hubungi Kami untuk Pemesanan & Kolaborasi 💬</h2>
+            <p class="section-desc">Silakan isi formulir di bawah ini untuk konsultasi project, order desain/video, atau tanya-tanya harga.</p>
+
+            <form class="contact-form" onsubmit="kirimKeWhatsApp(event)">
+                
+                <div class="form-group">
+                    <label for="contact-info">Email / No. WhatsApp *</label>
+                    <input type="text" id="contact-info" placeholder="Contoh: 08123456789 / email@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service-select">Pilih Layanan *</label>
+                    <select id="service-select" required>
+                        <option value="" disabled selected>-- Pilih Layanan yang Dibutuhkan --</option>
+                        <option value="Color Grading & Video Editing">Color Grading & Video Editing</option>
+                        <option value="Desain Grafis & Infografis">Desain Grafis & Infografis</option>
+                        <option value="Pamflet / Poster Event">Pamflet / Poster Event</option>
+                        <option value="Watermark / Branding Identity">Watermark / Branding Identity</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-note">Catatan Project, Deadline & Estimasi Harga *</label>
+                    <textarea id="project-note" rows="5" placeholder="Tuliskan detail project, deadline, budget harga, dan ketentuan revisi (maksimal 3x revisi)..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary btn-submit">✨ Kirim Pesanan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Zlleea Visuals. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Validasi & WhatsApp Handler -->
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+                console.log(
+                    "Website berhasil dimuat"
+                );
+            }
+        );
+
+        function kirimKeWhatsApp(event) {
+            event.preventDefault(); // Mencegah error HTTP 405
+            
+            // Ambil data dari form sesuai ID elemen di HTML
+            let kontak = document.getElementById('contact-info').value;
+            let layanan = document.getElementById('service-select').value;
+            let catatan = document.getElementById('project-note').value;
+            
+            // Cek apakah input sudah terisi dengan benar
+            if (kontak.trim() === "" || layanan === "" || catatan.trim() === "") {
+                alert("Mohon lengkapi semua opsi dengan benar (*).");
+                return;
+            }
+
+            // Ganti nomor di bawah ini dengan nomor WhatsApp kamu (awalan 62)
+            let nomorWA = "62838xxxxxxxx"; 
+            
+            // Format pesan otomatis ke WhatsApp
+            let pesan = `Halo Zlleea Visuals ✨,%0A%0ASaya ingin memesan layanan:%0A- *Kontak:* ${kontak}%0A- *Layanan:* ${layanan}%0A- *Catatan:* ${catatan}`;
+            
+            // Notifikasi sukses sebelum beralih ke WhatsApp
+            alert("Pilihan berhasil dikirim! Terimakasih sudah memesan di Zlleea Visuals✨");
+            
+            // Membuka WhatsApp di tab baru
+            window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
